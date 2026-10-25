@@ -37,7 +37,6 @@ a{color:var(--accent-600)}
 .wrap{max-width:var(--shell);margin-inline:auto;padding-inline:var(--pad-x)}
 .prose{max-width:var(--measure)}
 
-/* header */
 header.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:saturate(150%) blur(8px);box-shadow:var(--shadow-1)}
 header.top .bar{display:flex;align-items:baseline;gap:var(--s4);flex-wrap:wrap;padding:var(--s3) 0 var(--s2)}
 header.top h1{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);font-weight:700;margin:0}
@@ -48,11 +47,8 @@ nav.daynav a{flex:0 0 auto;padding:6px 14px;border-radius:var(--r-pill);font-siz
 nav.daynav a:hover{background:var(--surface);color:var(--text)}
 nav.daynav a.active{background:var(--text);color:#fff}
 
-main{padding-bottom:var(--s8)}
-.hero{margin:var(--s5) 0 var(--s6);border-radius:var(--r-md);overflow:hidden;background:var(--surface-2)}
-.hero img{width:100%;aspect-ratio:21/9;object-fit:cover}
+main{padding:var(--s6) 0 var(--s8)}
 .lede{font-size:var(--fs-lede);line-height:var(--lh-lede);color:var(--text-2);margin:0 0 var(--s5)}
-
 .stats{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s4);margin-bottom:var(--s4)}
 .stat .k{font-size:var(--fs-label);line-height:var(--lh-label);letter-spacing:var(--ls-label);text-transform:uppercase;color:var(--text-3);font-weight:600}
 .stat .v{font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
@@ -64,29 +60,38 @@ h2{font-size:var(--fs-h2);line-height:var(--lh-h2);letter-spacing:var(--ls-h2);f
   margin:var(--s8) 0 var(--s4);position:relative;padding-top:var(--s4)}
 h2::before{content:"";position:absolute;top:0;left:0;width:24px;height:3px;border-radius:2px;background:var(--accent)}
 
-/* days */
-.day{background:var(--surface);border-radius:var(--r-md);padding:var(--s5);margin-bottom:var(--s6);scroll-margin-top:96px}
+/* week at a glance */
+.glance{width:100%;border-collapse:collapse;background:var(--surface);border-radius:var(--r-md)}
+.glance thead th{text-align:left;font-size:var(--fs-label);letter-spacing:var(--ls-label);text-transform:uppercase;
+  color:var(--text-3);font-weight:600;padding:var(--s3) var(--s4) var(--s2)}
+.glance td{padding:var(--s2) var(--s4);border-top:1px solid var(--border);vertical-align:middle}
+.glance tr:first-child td{border-top:none}
+.glance th.dayc{text-align:left;font-size:var(--fs-small);font-weight:700;padding:var(--s2) var(--s4);white-space:nowrap;border-top:1px solid var(--border)}
+.glance tr:first-child th.dayc{border-top:none}
+.glance .cell{display:flex;align-items:center;gap:var(--s3);min-width:0}
+.glance img{width:44px;height:44px;border-radius:var(--r-sm);object-fit:cover;background:var(--surface-2);flex:none}
+.glance .t{font-size:var(--fs-small);line-height:1.35}
+.glance .sn{color:var(--text-2)}
+
+/* day by day */
+.day{background:var(--surface);border-radius:var(--r-md);padding:var(--s4) var(--s5) var(--s5);margin-bottom:var(--s4);scroll-margin-top:96px}
 .day:nth-of-type(even){background:var(--bg)}
-.dayhead{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s4)}
-.badge{flex:none;width:32px;height:32px;border-radius:var(--r-pill);background:var(--accent-050);color:var(--accent-600);
-  font-weight:700;display:grid;place-items:center;font-size:var(--fs-small)}
+.dayhead{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;margin-bottom:var(--s3)}
+.badge{flex:none;width:28px;height:28px;border-radius:var(--r-pill);background:var(--accent-050);color:var(--accent-600);
+  font-weight:700;display:grid;place-items:center;font-size:var(--fs-label)}
 .dayhead h3{font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);font-weight:700;margin:0}
-.dsum{flex:1 1 100%;margin:0;color:var(--text-2);font-size:var(--fs-small);max-width:var(--measure)}
-.meals{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s5)}
-.meal{margin:0;background:#fff;border-radius:var(--r-md);overflow:hidden;box-shadow:var(--shadow-1)}
-.meal img{width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--surface-2)}
-.meal figcaption{padding:var(--s4) var(--s5) var(--s5)}
+.dayhead .snack{margin-left:auto;font-size:var(--fs-small);color:var(--text-2)}
+.meals{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
+.mrow{display:grid;grid-template-columns:72px 1fr;gap:var(--s4);align-items:center;margin:0;
+  background:#fff;border-radius:var(--r-md);padding:var(--s3);box-shadow:var(--shadow-1)}
+.day:nth-of-type(even) .mrow{background:var(--surface)}
+.mrow img{width:72px;height:72px;border-radius:var(--r-sm);object-fit:cover;background:var(--surface-2)}
+.txt{min-width:0}
 .lbl{display:block;font-size:var(--fs-label);line-height:var(--lh-label);letter-spacing:var(--ls-label);text-transform:uppercase;font-weight:600;color:var(--text-3)}
 .lbl.b{color:var(--accent-600)}
-.dish{display:block;font-size:var(--fs-h3);line-height:var(--lh-h3);letter-spacing:var(--ls-h3);font-weight:600;margin:var(--s1) 0 var(--s2)}
-.ing{display:block;color:var(--text-2);font-size:var(--fs-small)}
-.snack{margin:var(--s5) 0 0;font-size:var(--fs-small);color:var(--text-2)}
-.snack .lbl{display:inline;margin-right:var(--s2)}
-.day.feature .meals{grid-template-columns:repeat(2,1fr)}
-.day.feature .meal:first-child{grid-column:span 2}
-.day.feature .meal:first-child img{aspect-ratio:21/9}
+.dish{display:block;font-size:var(--fs-body);font-weight:600;line-height:1.35;margin:2px 0 3px}
+.ing{display:block;color:var(--text-2);font-size:var(--fs-small);line-height:1.4}
 
-/* tools + list */
 .tools{display:flex;align-items:center;gap:var(--s4);flex-wrap:wrap;margin-bottom:var(--s5)}
 .progress{flex:1 1 240px;min-width:200px}
 .track{height:6px;border-radius:var(--r-pill);background:var(--surface-2);overflow:hidden}
@@ -120,28 +125,28 @@ footer{margin-top:var(--s7);padding-top:var(--s4);border-top:1px solid var(--bor
 
 @media (max-width:1023px){
   .stats{grid-template-columns:repeat(3,1fr)}
-  .meals{grid-template-columns:1fr}
-  .meal{display:grid;grid-template-columns:120px 1fr;box-shadow:none;background:var(--surface)}
-  .day:nth-of-type(even) .meal{background:var(--bg)}
-  .meal img{aspect-ratio:1/1;height:100%}
-  .day.feature .meal:first-child img{aspect-ratio:1/1}
-  .day.feature .meals{grid-template-columns:1fr}
-  .day.feature .meal:first-child{grid-column:auto}
-  .day,.day:nth-of-type(even){background:var(--surface)}
-  .day:nth-of-type(even){background:var(--bg)}
   .stat.hi{margin:0}
+  .meals{grid-template-columns:1fr}
+  .glance thead{display:none}
+  .glance tr{display:block;padding:var(--s4) 0;border-top:1px solid var(--border)}
+  .glance th.dayc{display:block;border-top:none;padding:0 var(--s4) var(--s2)}
+  .glance td{display:flex;align-items:center;gap:var(--s3);border:none;padding:var(--s1) var(--s4)}
+  .glance td::before{content:attr(data-l);flex:none;width:84px;color:var(--text-3);font-size:var(--fs-label);
+    text-transform:uppercase;letter-spacing:var(--ls-label);font-weight:600}
+  .dayhead .snack{margin-left:0;flex:1 1 100%}
 }
 @media (max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
 @media print{
   @page{margin:14mm}
-  header.top,.tools,footer,.hero,.skip{display:none!important}
+  header.top,.tools,footer,.skip{display:none!important}
+  .glance{background:#fff}
+  .glance img,.mrow img{display:none}
+  .glance td{padding:2px 6px}
   .day{background:#fff!important;padding:0;margin:0 0 var(--s4);break-inside:avoid}
   .dayhead{margin-bottom:var(--s2)}
   .badge{display:none}
   .meals{grid-template-columns:repeat(3,1fr);gap:var(--s3)}
-  .meal{box-shadow:none;background:#fff}
-  .meal img{display:none}
-  .meal figcaption{padding:0 0 var(--s2)}
+  .mrow{box-shadow:none;background:#fff;padding:0 0 var(--s2);grid-template-columns:1fr}
   #list{break-before:page}
   .aisle{background:#fff;padding:0 0 var(--s3);break-inside:avoid}
   .row{border-bottom:1px dotted #c9c4bb;border-radius:0;min-height:0;padding:5px 2px}
@@ -165,11 +170,7 @@ footer{margin-top:var(--s7);padding-top:var(--s4);border-top:1px solid var(--bor
 </header>
 
 <main class="wrap">
-  <figure class="hero">
-    <img src="img/hero.jpg" alt="A spread of the week's Portuguese meals" width="720" height="360">
-  </figure>
-
-  <p class="lede prose">A week of everyday Portuguese eating: milky coffee and a light breakfast, soup with almost every dinner, and rice or pasta at lunch. Built from the cheapest suitable items on the Auchan (Castelo Branco) Glovo catalogue. Only three breakfasts are bread-based — the rest are yogurt and cereal, which is how most Portuguese homes actually start the day.</p>
+  <p class="lede prose">A week of everyday Portuguese eating: a light breakfast of yogurt or cereal with milky coffee, soup with almost every dinner, and rice or pasta at lunch. Built from the cheapest suitable items on the Auchan (Castelo Branco) Glovo catalogue.</p>
 
   <div class="stats">
     <div class="stat"><div class="k">Meals</div><div class="v">21</div></div>
@@ -180,182 +181,212 @@ footer{margin-top:var(--s7);padding-top:var(--s4);border-top:1px solid var(--bor
     <div class="stat"><div class="k">Items</div><div class="v">36</div></div>
   </div>
 
-  <h2>The week</h2>
-      <section class="day feature" id="day1">
-        <header class="dayhead"><span class="badge">1</span><h3>Day 1</h3><p class="dsum">Iogurte com muesli e banana · Arroz de frango · Sopa de legumes with a cheese toast</p></header>
-        <div class="meals">        <figure class="meal">
-          <img src="img/b5.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+  <h2>Week at a glance</h2>
+  <table class="glance">
+    <caption class="skip">The week's meals by day</caption>
+    <thead><tr><th scope="col">Day</th><th scope="col">Breakfast</th><th scope="col">Lunch</th><th scope="col">Dinner</th><th scope="col">Snack</th></tr></thead>
+    <tbody>
+          <tr>
+            <th scope="row" class="dayc">Day 1</th>
+            <td data-l="Breakfast"><span class="cell"><img src="img/b5.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Iogurte com muesli e banana</span></span></td>            <td data-l="Lunch"><span class="cell"><img src="img/l1.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Arroz de frango</span></span></td>            <td data-l="Dinner"><span class="cell"><img src="img/d1.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Sopa de legumes with a cheese toast</span></span></td>
+            <td data-l="Snack"><span class="t sn">Banana</span></td>
+          </tr>          <tr>
+            <th scope="row" class="dayc">Day 2</th>
+            <td data-l="Breakfast"><span class="cell"><img src="img/b6.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Cereais com leite e maçã</span></span></td>            <td data-l="Lunch"><span class="cell"><img src="img/l2.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Massa com atum e cebola</span></span></td>            <td data-l="Dinner"><span class="cell"><img src="img/d2.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Sopa de feijão frade with bread</span></span></td>
+            <td data-l="Snack"><span class="t sn">Maria biscuits</span></td>
+          </tr>          <tr>
+            <th scope="row" class="dayc">Day 3</th>
+            <td data-l="Breakfast"><span class="cell"><img src="img/b1.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Tosta mista — cheese and ham toast</span></span></td>            <td data-l="Lunch"><span class="cell"><img src="img/l3.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Arroz de salsichas com feijão frade</span></span></td>            <td data-l="Dinner"><span class="cell"><img src="img/d3.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Bacalhau com natas with salad</span></span></td>
+            <td data-l="Snack"><span class="t sn">Yogurt and apple</span></td>
+          </tr>          <tr>
+            <th scope="row" class="dayc">Day 4</th>
+            <td data-l="Breakfast"><span class="cell"><img src="img/b7.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Iogurte com bolachas e maçã</span></span></td>            <td data-l="Lunch"><span class="cell"><img src="img/l4.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">One-pot pork and potato stew</span></span></td>            <td data-l="Dinner"><span class="cell"><img src="img/d4.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Sopa de tomate with a cheese toast</span></span></td>
+            <td data-l="Snack"><span class="t sn">Banana</span></td>
+          </tr>          <tr>
+            <th scope="row" class="dayc">Day 5</th>
+            <td data-l="Breakfast"><span class="cell"><img src="img/b8.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Sandes de fiambre e queijo</span></span></td>            <td data-l="Lunch"><span class="cell"><img src="img/l5.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Risotto de legumes com queijo</span></span></td>            <td data-l="Dinner"><span class="cell"><img src="img/d5.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Creme de legumes with bread</span></span></td>
+            <td data-l="Snack"><span class="t sn">Yogurt and apple</span></td>
+          </tr>          <tr>
+            <th scope="row" class="dayc">Day 6</th>
+            <td data-l="Breakfast"><span class="cell"><img src="img/b6.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Cereais com leite e banana</span></span></td>            <td data-l="Lunch"><span class="cell"><img src="img/l6.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Arroz de tomate com chouriço</span></span></td>            <td data-l="Dinner"><span class="cell"><img src="img/d6.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Esparregado de grelos com chouriço</span></span></td>
+            <td data-l="Snack"><span class="t sn">Maria biscuits</span></td>
+          </tr>          <tr>
+            <th scope="row" class="dayc">Day 7</th>
+            <td data-l="Breakfast"><span class="cell"><img src="img/b2.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Tosta de queijo com tomate</span></span></td>            <td data-l="Lunch"><span class="cell"><img src="img/l7.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Massa com sardinha</span></span></td>            <td data-l="Dinner"><span class="cell"><img src="img/d7.jpg" alt="" width="44" height="44" loading="lazy" decoding="async"><span class="t">Salada de atum com feijão frade</span></span></td>
+            <td data-l="Snack"><span class="t sn">Yogurt and banana</span></td>
+          </tr>
+    </tbody>
+  </table>
+
+  <h2>Day by day</h2>
+      <section class="day" id="day1">
+        <header class="dayhead"><span class="badge">1</span><h3>Day 1</h3><span class="snack">Snack · Banana</span></header>
+        <div class="meals">        <figure class="mrow">
+          <img src="img/b5.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl b">Breakfast</span>
             <span class="dish">Iogurte com muesli e banana</span>
             <span class="ing">iogurte natural · muesli · banana · café</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/l1.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/l1.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl l">Lunch</span>
             <span class="dish">Arroz de frango</span>
             <span class="ing">arroz carolino · frango · cebola · alho · cenoura · azeite</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/d1.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/d1.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl d">Dinner</span>
             <span class="dish">Sopa de legumes with a cheese toast</span>
             <span class="ing">batata · cenoura · cebola · azeite · pão · queijo</span>
           </figcaption>
         </figure></div>
-        <p class="snack"><span class="lbl">Snack</span> Banana</p>
       </section>      <section class="day" id="day2">
-        <header class="dayhead"><span class="badge">2</span><h3>Day 2</h3><p class="dsum">Cereais com leite e maçã · Massa com atum e cebola · Sopa de feijão frade with bread</p></header>
-        <div class="meals">        <figure class="meal">
-          <img src="img/b6.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        <header class="dayhead"><span class="badge">2</span><h3>Day 2</h3><span class="snack">Snack · Maria biscuits</span></header>
+        <div class="meals">        <figure class="mrow">
+          <img src="img/b6.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl b">Breakfast</span>
             <span class="dish">Cereais com leite e maçã</span>
             <span class="ing">muesli · leite · maçã</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/l2.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/l2.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl l">Lunch</span>
             <span class="dish">Massa com atum e cebola</span>
             <span class="ing">massa · atum · cebola · azeite</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/d2.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/d2.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl d">Dinner</span>
             <span class="dish">Sopa de feijão frade with bread</span>
             <span class="ing">feijão frade · cenoura · cebola · batata · pão</span>
           </figcaption>
         </figure></div>
-        <p class="snack"><span class="lbl">Snack</span> Maria biscuits</p>
       </section>      <section class="day" id="day3">
-        <header class="dayhead"><span class="badge">3</span><h3>Day 3</h3><p class="dsum">Tosta mista — cheese and ham toast · Arroz de salsichas com feijão frade · Bacalhau com natas with salad</p></header>
-        <div class="meals">        <figure class="meal">
-          <img src="img/b1.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        <header class="dayhead"><span class="badge">3</span><h3>Day 3</h3><span class="snack">Snack · Yogurt and apple</span></header>
+        <div class="meals">        <figure class="mrow">
+          <img src="img/b1.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl b">Breakfast</span>
             <span class="dish">Tosta mista — cheese and ham toast</span>
             <span class="ing">pão de forma · queijo flamengo · fiambre · leite</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/l3.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/l3.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl l">Lunch</span>
             <span class="dish">Arroz de salsichas com feijão frade</span>
             <span class="ing">arroz · salsichas · feijão frade · cebola</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/d3.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/d3.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl d">Dinner</span>
             <span class="dish">Bacalhau com natas with salad</span>
             <span class="ing">bacalhau com natas · tomate · cebola · azeite</span>
           </figcaption>
         </figure></div>
-        <p class="snack"><span class="lbl">Snack</span> Yogurt and apple</p>
       </section>      <section class="day" id="day4">
-        <header class="dayhead"><span class="badge">4</span><h3>Day 4</h3><p class="dsum">Iogurte com bolachas e maçã · One-pot pork and potato stew · Sopa de tomate with a cheese toast</p></header>
-        <div class="meals">        <figure class="meal">
-          <img src="img/b7.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        <header class="dayhead"><span class="badge">4</span><h3>Day 4</h3><span class="snack">Snack · Banana</span></header>
+        <div class="meals">        <figure class="mrow">
+          <img src="img/b7.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl b">Breakfast</span>
             <span class="dish">Iogurte com bolachas e maçã</span>
             <span class="ing">iogurte natural · bolacha Maria · maçã</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/l4.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/l4.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl l">Lunch</span>
             <span class="dish">One-pot pork and potato stew</span>
             <span class="ing">rosários de porco · batata · cenoura · cebola · farinha</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/d4.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/d4.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl d">Dinner</span>
             <span class="dish">Sopa de tomate with a cheese toast</span>
             <span class="ing">tomate triturado · cebola · batata · natas · pão · queijo</span>
           </figcaption>
         </figure></div>
-        <p class="snack"><span class="lbl">Snack</span> Banana</p>
       </section>      <section class="day" id="day5">
-        <header class="dayhead"><span class="badge">5</span><h3>Day 5</h3><p class="dsum">Sandes de fiambre e queijo · Risotto de legumes com queijo · Creme de legumes with bread</p></header>
-        <div class="meals">        <figure class="meal">
-          <img src="img/b8.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        <header class="dayhead"><span class="badge">5</span><h3>Day 5</h3><span class="snack">Snack · Yogurt and apple</span></header>
+        <div class="meals">        <figure class="mrow">
+          <img src="img/b8.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl b">Breakfast</span>
             <span class="dish">Sandes de fiambre e queijo</span>
             <span class="ing">pão de forma · queijo flamengo · fiambre · leite</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/l5.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/l5.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl l">Lunch</span>
             <span class="dish">Risotto de legumes com queijo</span>
             <span class="ing">arroz risotto · legumes · natas · queijo</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/d5.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/d5.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl d">Dinner</span>
             <span class="dish">Creme de legumes with bread</span>
             <span class="ing">batata · cenoura · cebola · natas · pão</span>
           </figcaption>
         </figure></div>
-        <p class="snack"><span class="lbl">Snack</span> Yogurt and apple</p>
       </section>      <section class="day" id="day6">
-        <header class="dayhead"><span class="badge">6</span><h3>Day 6</h3><p class="dsum">Cereais com leite e banana · Arroz de tomate com chouriço · Esparregado de grelos com chouriço</p></header>
-        <div class="meals">        <figure class="meal">
-          <img src="img/b6.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        <header class="dayhead"><span class="badge">6</span><h3>Day 6</h3><span class="snack">Snack · Maria biscuits</span></header>
+        <div class="meals">        <figure class="mrow">
+          <img src="img/b6.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl b">Breakfast</span>
             <span class="dish">Cereais com leite e banana</span>
             <span class="ing">muesli · leite · banana</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/l6.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/l6.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl l">Lunch</span>
             <span class="dish">Arroz de tomate com chouriço</span>
             <span class="ing">arroz carolino · tomate triturado · chouriço · cebola</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/d6.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/d6.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl d">Dinner</span>
             <span class="dish">Esparregado de grelos com chouriço</span>
             <span class="ing">grelos · chouriço · cebola · azeite · pão</span>
           </figcaption>
         </figure></div>
-        <p class="snack"><span class="lbl">Snack</span> Maria biscuits</p>
       </section>      <section class="day" id="day7">
-        <header class="dayhead"><span class="badge">7</span><h3>Day 7</h3><p class="dsum">Tosta de queijo com tomate · Massa com sardinha · Salada de atum com feijão frade</p></header>
-        <div class="meals">        <figure class="meal">
-          <img src="img/b2.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        <header class="dayhead"><span class="badge">7</span><h3>Day 7</h3><span class="snack">Snack · Yogurt and banana</span></header>
+        <div class="meals">        <figure class="mrow">
+          <img src="img/b2.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl b">Breakfast</span>
             <span class="dish">Tosta de queijo com tomate</span>
             <span class="ing">pão de forma · queijo flamengo · tomate · leite</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/l7.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/l7.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl l">Lunch</span>
             <span class="dish">Massa com sardinha</span>
             <span class="ing">massa · sardinhas · cebola · azeite</span>
           </figcaption>
-        </figure>        <figure class="meal">
-          <img src="img/d7.jpg" alt="" width="720" height="540" loading="lazy" decoding="async">
-          <figcaption>
+        </figure>        <figure class="mrow">
+          <img src="img/d7.jpg" alt="" width="72" height="72" loading="lazy" decoding="async">
+          <figcaption class="txt">
             <span class="lbl d">Dinner</span>
             <span class="dish">Salada de atum com feijão frade</span>
             <span class="ing">atum · feijão frade · cebola · azeite · pão</span>
           </figcaption>
         </figure></div>
-        <p class="snack"><span class="lbl">Snack</span> Yogurt and banana</p>
       </section>
 
   <h2 id="list-h">Shopping list</h2>
@@ -582,7 +613,7 @@ footer{margin-top:var(--s7);padding-top:var(--s4);border-top:1px solid var(--bor
     <ul>
       <li>Portuguese breakfasts are usually <strong>light and quick</strong> — coffee with milk (<em>galão</em> or <em>meia de leite</em>) plus something small; a cooked breakfast is a weekend thing.</li>
       <li>Bread is the classic solid, but a breakfast with <strong>no bread at all is completely normal</strong> — milk, yogurt, cereal and fruit are just as common.</li>
-      <li>So only <strong>three of seven breakfasts here use bread</strong> (the two tostas and the sandes), and the rest are <em>iogurte</em> with muesli or cereal with milk and fruit.</li>
+      <li>So only <strong>three of seven breakfasts use bread</strong> here (two tostas and a sandes); the rest are <em>iogurte</em> with muesli or cereal with milk and fruit.</li>
       <li>Eggs were left out on purpose; <em>pastel de nata</em> (€4.69 a pack) is the optional weekend treat.</li>
     </ul>
   </div>
@@ -606,14 +637,14 @@ footer{margin-top:var(--s7);padding-top:var(--s4);border-top:1px solid var(--bor
     </ul>
   </div>
 
-  <footer>Auchan, Castelo Branco via Glovo · 36 items · 21 meals and snacks. Dish photographs are illustrations of the meals, not the packaged products.</footer>
+  <footer>Auchan, Castelo Branco via Glovo · 36 items · 21 meals and snacks. Thumbnails are illustrations of the meals, not the packaged products.</footer>
 </main>
 <script>
 (function(){
   var boxes = Array.prototype.slice.call(document.querySelectorAll('#list input[type=checkbox]'));
   var counter = document.getElementById('bought');
   var bar = document.getElementById('bar');
-  var total = boxes.length, KEY = 'comida-week-v2';
+  var total = boxes.length, KEY = 'comida-week-v3';
   function load(){ try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e){ return []; } }
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(boxes.map(function(b){return b.checked?1:0;}))); } catch(e){} }
   function update(){
@@ -646,9 +677,6 @@ footer{margin-top:var(--s7);padding-top:var(--s4);border-top:1px solid var(--bor
     }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
     links.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if (s) obs.observe(s); });
   }
-  window.addEventListener('beforeprint', function(){
-    document.querySelectorAll('details.day').forEach(function(d){ d.open = true; });
-  });
 })();
 </script>
 </body>
