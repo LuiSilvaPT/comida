@@ -3,226 +3,554 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Four days of meals — Auchan, Castelo Branco</title>
+<title>One week of Portuguese meals — Auchan, Castelo Branco</title>
+<meta name="description" content="A seven-day Portuguese meal plan with breakfast, lunch, dinner and snacks, and a grouped shopping list, built from the cheapest suitable items on the Auchan (Castelo Branco) Glovo catalogue.">
 <style>
-  :root{--ink:#14171c;--muted:#6b7280;--line:#e7e8ea;--soft:#f7f8f9;--accent:#8a4b12}
-  *{box-sizing:border-box}
-  body{margin:0;background:#fff;color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1000px;margin:0 auto;padding:36px 22px 72px}
-  .hero{position:relative;border-radius:16px;overflow:hidden;background:#111}
-  .hero img{display:block;width:100%;height:auto}
-  .hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.12) 0%,rgba(0,0,0,.05) 38%,rgba(0,0,0,.74) 100%)}
-  .hero .body{position:absolute;left:0;right:0;bottom:0;padding:26px 30px;color:#fff}
-  .hero h1{margin:0 0 4px;font-size:30px;line-height:1.15;letter-spacing:-.02em;font-weight:700}
-  .hero p{margin:0;font-size:15px;opacity:.93;max-width:62ch}
-  .hero .stats{display:flex;gap:26px;margin-top:16px;flex-wrap:wrap}
-  .hero .stat .k{font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;opacity:.82;font-weight:600}
-  .hero .stat .v{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
-  h2{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:44px 0 16px}
-  .day{margin-bottom:34px}
-  .day h3{margin:0 0 12px;font-size:17px;font-weight:700;letter-spacing:-.01em}
-  .meals{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .meal{margin:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
-  .meal img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
-  .meal figcaption{padding:11px 14px 13px}
-  .lbl{display:block;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--muted)}
-  .lbl.b{color:#2563eb}.lbl.l{color:#146b3a}.lbl.d{color:#8a4b12}
-  .dish{display:block;font-weight:650;font-size:14.5px;margin:2px 0 3px;line-height:1.35}
-  .ing{display:block;color:var(--muted);font-size:12.5px}
-  .snack{margin:11px 0 0;font-size:14px;color:#2b3038}
-  .snack .lbl{display:inline;margin-right:6px}
-  .sauces{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:4px}
-  .sauce{border:1px solid var(--line);border-radius:12px;padding:14px 16px}
-  .sauce h4{margin:0 0 4px;font-size:14px;font-weight:700}
-  .sauce p{margin:0;font-size:13.5px;color:#2b3038}
-  .sauce .tagline{display:block;color:var(--muted);font-size:12.5px;margin-top:6px}
-  table{width:100%;border-collapse:collapse}
-  th{text-align:left;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:0 10px 8px;border-bottom:1px solid var(--line)}
-  th.num,td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-  td{padding:8px 10px;border-bottom:1px solid var(--line)}
-  tr.cat td{background:var(--soft);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:6px 10px}
-  tfoot td{border-bottom:none;padding:7px 10px;font-variant-numeric:tabular-nums;color:var(--muted)}
-  tfoot .grand td{font-weight:700;font-size:15px;color:var(--ink);border-top:1px solid var(--line);padding-top:11px}
-  .notes{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:14px}
-  .notes ul{margin:0;padding-left:18px}
-  .notes li{margin:6px 0;font-size:14px;color:#2b3038}
-  footer{margin-top:36px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
-  @media (max-width:780px){.meals{grid-template-columns:1fr}.sauces{grid-template-columns:1fr}.hero h1{font-size:23px}}
-  @media print{body{font-size:12px}.wrap{padding:0}.meal,.day,.notes,.sauce{break-inside:avoid}.hero .overlay{background:rgba(0,0,0,.55)}}
+:root{
+  --ink:#14171c; --muted:#59616e; --line:#e4e6ea; --soft:#f6f7f9;
+  --accent:#8a4b12; --green:#14603a; --blue:#1d4ed8; --bg:#ffffff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:var(--green)}
+:focus-visible{outline:3px solid #0b5fff;outline-offset:2px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;background:#fff;color:var(--ink);padding:10px 14px;border-radius:0 0 8px 0;z-index:50}
+.skip:focus{left:0}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* sticky header + day nav */
+header.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);
+  border-bottom:1px solid var(--line);backdrop-filter:saturate(140%) blur(6px)}
+header.top .bar{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding:12px 0 6px}
+header.top h1{font-size:19px;margin:0;letter-spacing:-.01em;font-weight:700}
+header.top .meta{color:var(--muted);font-size:13.5px}
+nav.daynav{display:flex;gap:4px;overflow-x:auto;padding:0 0 9px;scrollbar-width:thin}
+nav.daynav a{flex:0 0 auto;padding:6px 11px;border-radius:999px;font-size:13.5px;font-weight:600;
+  color:#2c333d;text-decoration:none;border:1px solid var(--line);background:#fff}
+nav.daynav a:hover{background:var(--soft)}
+nav.daynav a.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+main{padding-bottom:64px}
+.hero{margin:22px 0 8px;border-radius:14px;overflow:hidden;background:#111}
+.hero img{display:block;width:100%;height:auto}
+.lede{color:#333a44;font-size:16.5px;max-width:78ch}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin:18px 0 4px}
+.stats .k{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.stats .v{font-size:19px;font-weight:700;font-variant-numeric:tabular-nums}
+
+h2{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;margin:40px 0 14px}
+
+/* days */
+details.day{border:1px solid var(--line);border-radius:12px;margin-bottom:14px;background:#fff;overflow:hidden}
+details.day>summary{list-style:none;cursor:pointer;padding:13px 16px;display:flex;gap:12px;align-items:baseline;flex-wrap:wrap}
+details.day>summary::-webkit-details-marker{display:none}
+details.day>summary::before{content:"▸";color:var(--muted);font-size:13px;transition:transform .15s}
+details.day[open]>summary::before{transform:rotate(90deg)}
+details.day>summary:hover{background:var(--soft)}
+.dnum{font-weight:700;font-size:16px}
+.dsum{color:var(--muted);font-size:13.5px;flex:1 1 auto;min-width:0}
+.meals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:0 16px}
+.meal{margin:0;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.meal img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.meal figcaption{padding:10px 13px 12px}
+.lbl{display:block;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.lbl.b{color:var(--blue)}.lbl.l{color:var(--green)}.lbl.d{color:var(--accent)}
+.dish{display:block;font-weight:650;font-size:14.5px;margin:2px 0 3px;line-height:1.35}
+.ing{display:block;color:var(--muted);font-size:12.5px}
+.snack{margin:12px 16px 15px;font-size:14px;color:#2c333d}
+.snack .lbl{display:inline;margin-right:6px}
+
+/* shopping list */
+.tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.progress{flex:1 1 220px;min-width:200px}
+.track{height:8px;border-radius:99px;background:var(--soft);border:1px solid var(--line);overflow:hidden}
+.track>i{display:block;height:100%;width:0;background:var(--green);transition:width .2s}
+#bought{font-size:13.5px;color:var(--muted);display:block;margin-top:6px;font-variant-numeric:tabular-nums}
+button{font:inherit;font-size:13.5px;font-weight:600;padding:8px 14px;border-radius:9px;
+  border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+button:hover{background:var(--soft)}
+.aisle{border:1px solid var(--line);border-radius:12px;padding:6px 14px 10px;margin:0 0 12px}
+.aisle legend{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--muted);padding:0 6px}
+.row{display:grid;grid-template-columns:22px 1fr auto auto;gap:10px;align-items:center;
+  padding:8px 6px;border-bottom:1px solid var(--line);cursor:pointer}
+.row:last-child{border-bottom:none}
+.row:hover{background:var(--soft)}
+.row input{width:18px;height:18px;accent-color:var(--green);cursor:pointer}
+.row .nm{font-size:14.5px}
+.row .qt{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.row .pr{font-variant-numeric:tabular-nums;font-size:13.5px;color:#2c333d;min-width:56px;text-align:right}
+.row input:checked+.nm{text-decoration:line-through;color:var(--muted)}
+.row input:checked~.pr{color:var(--muted)}
+
+.notes{border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-top:14px}
+.notes ul{margin:0;padding-left:18px}
+.notes li{margin:6px 0;font-size:14.5px;color:#2c333d;max-width:80ch}
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+
+@media (max-width:820px){
+  .meals{grid-template-columns:1fr}
+  .meal{display:grid;grid-template-columns:112px 1fr}
+  .meal img{aspect-ratio:1/1;height:100%}
+  header.top h1{font-size:17px}
+}
+@media print{
+  @page{margin:14mm}
+  header.top,.tools,footer,.hero,.skip{display:none!important}
+  details.day{border:none;margin:0 0 10px;break-inside:avoid}
+  details.day>summary{display:none}
+  .meals{grid-template-columns:repeat(3,1fr);gap:8px;padding:0}
+  .meal{border:none}
+  .meal img{display:none}
+  .meal figcaption{padding:0 0 6px}
+  #list{break-before:page}
+  .aisle{break-inside:avoid;border:none;padding:0 0 8px}
+  .row{border-bottom:1px dotted #bbb;padding:5px 2px}
+  .row .pr{color:#000}
+  .notes{break-inside:avoid}
+  body{font-size:11.5pt}
+}
 </style>
 </head>
 <body>
-<div class="wrap">
+<a class="skip" href="#list">Skip to shopping list</a>
 
-  <div class="hero">
-    <img src="img/hero.jpg" alt="">
-    <div class="overlay"></div>
-    <div class="body">
-      <h1>Four days of meals</h1>
-      <p>Twelve meals and snacks from one €37.22 shop at Auchan, Castelo Branco. Every breakfast is a cheesy toast — tosta mista, queijo com tomate, queijo com marmelada — and the rest follows what you like: rice, noodles, pasta, potatoes, tuna, the cheapest pork and chicken, risottos, one-pot stews, mash and homemade soups, each with a sauce that fits.</p>
-      <div class="stats">
-        <div class="stat"><div class="k">Meals</div><div class="v">12 + snacks</div></div>
-        <div class="stat"><div class="k">Food</div><div class="v">€37.22</div></div>
-        <div class="stat"><div class="k">Delivery</div><div class="v">€1.49</div></div>
-        <div class="stat"><div class="k">Total</div><div class="v">€38.71</div></div>
-        <div class="stat"><div class="k">Budget</div><div class="v">€39.00</div></div>
-      </div>
+<header class="top">
+  <div class="wrap">
+    <div class="bar">
+      <h1>One week of Portuguese meals</h1>
+      <span class="meta">7 days · 21 meals + snacks · €67.82 total · €9.69 a day</span>
     </div>
+    <nav class="daynav" aria-label="Jump to a day"><a href="#day1">Day 1</a><a href="#day2">Day 2</a><a href="#day3">Day 3</a><a href="#day4">Day 4</a><a href="#day5">Day 5</a><a href="#day6">Day 6</a><a href="#day7">Day 7</a><a href="#list">Shopping list</a></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <figure class="hero">
+    <img src="img/hero.jpg" alt="A spread of the week's Portuguese meals" width="720" height="360">
+  </figure>
+
+  <p class="lede">A week of everyday Portuguese eating — soup with almost every dinner, rice or pasta at lunch, bread and cheese at breakfast — built from the cheapest suitable items on the Auchan (Castelo Branco) Glovo catalogue. Breakfast is always a cheesy toast; the tuna is dressed with oil and onion, never tomato.</p>
+
+  <div class="stats">
+    <div><div class="k">Meals</div><div class="v">21 + snacks</div></div>
+    <div><div class="k">Food</div><div class="v">€66.33</div></div>
+    <div><div class="k">Delivery</div><div class="v">€1.49</div></div>
+    <div><div class="k">Total</div><div class="v">€67.82</div></div>
+    <div><div class="k">Per day</div><div class="v">€9.69</div></div>
+    <div><div class="k">Items</div><div class="v">36</div></div>
   </div>
 
   <h2>The week</h2>
-    <section class="day">
-      <h3>Day 1</h3>
-      <div class="meals">      <figure class="meal">
-        <img src="img/d1_breakfast.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl b">Breakfast</span>
-          <span class="dish">Tosta mista — cheese and ham toast</span>
-          <span class="ing">pão de forma · queijo flamengo · fiambre · leite</span>
-        </figcaption>
-      </figure>      <figure class="meal">
-        <img src="img/d1_lunch.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl l">Lunch</span>
-          <span class="dish">Chicken and rice one-pot</span>
-          <span class="ing">arroz carolino · frango · cebola · cenoura · tomate</span>
-        </figcaption>
-      </figure>      <figure class="meal">
-        <img src="img/d1_dinner.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl d">Dinner</span>
-          <span class="dish">Homemade tomato soup with cheese toast</span>
-          <span class="ing">tomate triturado · cebola · batata · natas · pão · queijo</span>
-        </figcaption>
-      </figure></div>
-      <p class="snack"><span class="lbl">Snack</span> Yogurt and banana</p>
-    </section>    <section class="day">
-      <h3>Day 2</h3>
-      <div class="meals">      <figure class="meal">
-        <img src="img/d2_breakfast.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl b">Breakfast</span>
-          <span class="dish">Cheese and tomato toast</span>
-          <span class="ing">pão de forma · queijo flamengo · tomate · leite</span>
-        </figcaption>
-      </figure>      <figure class="meal">
-        <img src="img/d2_lunch.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl l">Lunch</span>
-          <span class="dish">Spaghetti with tuna and onion</span>
-          <span class="ing">massa · atum · cebola · azeite</span>
-        </figcaption>
-      </figure>      <figure class="meal">
-        <img src="img/d2_dinner.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl d">Dinner</span>
-          <span class="dish">One-pot pork rib stew with potatoes</span>
-          <span class="ing">rosários de porco · batata · cenoura · cebola · farinha</span>
-        </figcaption>
-      </figure></div>
-      <p class="snack"><span class="lbl">Snack</span> Biscuits and banana</p>
-    </section>    <section class="day">
-      <h3>Day 3</h3>
-      <div class="meals">      <figure class="meal">
-        <img src="img/d3_breakfast.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl b">Breakfast</span>
-          <span class="dish">Tosta de queijo com marmelada</span>
-          <span class="ing">pão de forma · queijo flamengo · marmelada · leite</span>
-        </figcaption>
-      </figure>      <figure class="meal">
-        <img src="img/d3_lunch.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl l">Lunch</span>
-          <span class="dish">Creamy vegetable risotto</span>
-          <span class="ing">arroz risotto · legumes · natas · queijo</span>
-        </figcaption>
-      </figure>      <figure class="meal">
-        <img src="img/d3_dinner.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl d">Dinner</span>
-          <span class="dish">Mashed potato with gravy and sausages</span>
-          <span class="ing">batata · manteiga · leite · farinha · salsichas</span>
-        </figcaption>
-      </figure></div>
-      <p class="snack"><span class="lbl">Snack</span> Yogurt and apple</p>
-    </section>    <section class="day">
-      <h3>Day 4</h3>
-      <div class="meals">      <figure class="meal">
-        <img src="img/d1_breakfast.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl b">Breakfast</span>
-          <span class="dish">Tosta mista — cheese and ham toast</span>
-          <span class="ing">pão de forma · queijo flamengo · fiambre · leite</span>
-        </figcaption>
-      </figure>      <figure class="meal">
-        <img src="img/d4_lunch.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl l">Lunch</span>
-          <span class="dish">Chicken stroganoff noodles</span>
-          <span class="ing">noodles · frango · natas · molho</span>
-        </figcaption>
-      </figure>      <figure class="meal">
-        <img src="img/d4_dinner.jpg" alt="" loading="lazy">
-        <figcaption>
-          <span class="lbl d">Dinner</span>
-          <span class="dish">Oven fries with tuna salad</span>
-          <span class="ing">batatas pré-fritas · atum · cebola · azeite</span>
-        </figcaption>
-      </figure></div>
-      <p class="snack"><span class="lbl">Snack</span> Biscuits, banana and apple</p>
-    </section>
+      <details class="day" id="day1" open>
+        <summary><span class="dnum">Day 1</span><span class="dsum">Tosta mista — cheese and ham toast · Arroz de frango · Sopa de legumes with a cheese toast</span></summary>
+        <div class="meals">        <figure class="meal">
+          <img src="img/b1.jpg" alt="Tosta mista — cheese and ham toast" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl b">Breakfast</span>
+            <span class="dish">Tosta mista — cheese and ham toast</span>
+            <span class="ing">pão de forma · queijo flamengo · fiambre · leite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/l1.jpg" alt="Arroz de frango" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl l">Lunch</span>
+            <span class="dish">Arroz de frango</span>
+            <span class="ing">arroz carolino · frango · cebola · alho · cenoura · azeite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/d1.jpg" alt="Sopa de legumes with a cheese toast" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl d">Dinner</span>
+            <span class="dish">Sopa de legumes with a cheese toast</span>
+            <span class="ing">batata · cenoura · cebola · azeite · pão · queijo</span>
+          </figcaption>
+        </figure></div>
+        <p class="snack"><span class="lbl">Snack</span> Yogurt and banana</p>
+      </details>      <details class="day" id="day2" open>
+        <summary><span class="dnum">Day 2</span><span class="dsum">Tosta de queijo com tomate · Massa com atum e cebola · Sopa de feijão frade with bread</span></summary>
+        <div class="meals">        <figure class="meal">
+          <img src="img/b2.jpg" alt="Tosta de queijo com tomate" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl b">Breakfast</span>
+            <span class="dish">Tosta de queijo com tomate</span>
+            <span class="ing">pão de forma · queijo flamengo · tomate · leite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/l2.jpg" alt="Massa com atum e cebola" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl l">Lunch</span>
+            <span class="dish">Massa com atum e cebola</span>
+            <span class="ing">massa · atum · cebola · azeite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/d2.jpg" alt="Sopa de feijão frade with bread" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl d">Dinner</span>
+            <span class="dish">Sopa de feijão frade with bread</span>
+            <span class="ing">feijão frade · cenoura · cebola · batata · pão</span>
+          </figcaption>
+        </figure></div>
+        <p class="snack"><span class="lbl">Snack</span> Biscuits and banana</p>
+      </details>      <details class="day" id="day3" open>
+        <summary><span class="dnum">Day 3</span><span class="dsum">Tosta de queijo com marmelada · Arroz de salsichas com feijão frade · Bacalhau com natas with salad</span></summary>
+        <div class="meals">        <figure class="meal">
+          <img src="img/b3.jpg" alt="Tosta de queijo com marmelada" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl b">Breakfast</span>
+            <span class="dish">Tosta de queijo com marmelada</span>
+            <span class="ing">pão de forma · queijo flamengo · marmelada · leite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/l3.jpg" alt="Arroz de salsichas com feijão frade" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl l">Lunch</span>
+            <span class="dish">Arroz de salsichas com feijão frade</span>
+            <span class="ing">arroz · salsichas · feijão frade · cebola</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/d3.jpg" alt="Bacalhau com natas with salad" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl d">Dinner</span>
+            <span class="dish">Bacalhau com natas with salad</span>
+            <span class="ing">bacalhau com natas · tomate · cebola · azeite</span>
+          </figcaption>
+        </figure></div>
+        <p class="snack"><span class="lbl">Snack</span> Yogurt and apple</p>
+      </details>      <details class="day" id="day4" open>
+        <summary><span class="dnum">Day 4</span><span class="dsum">Tosta mista — cheese and ham toast · One-pot pork and potato stew · Sopa de tomate with a cheese toast</span></summary>
+        <div class="meals">        <figure class="meal">
+          <img src="img/b1.jpg" alt="Tosta mista — cheese and ham toast" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl b">Breakfast</span>
+            <span class="dish">Tosta mista — cheese and ham toast</span>
+            <span class="ing">pão de forma · queijo flamengo · fiambre · leite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/l4.jpg" alt="One-pot pork and potato stew" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl l">Lunch</span>
+            <span class="dish">One-pot pork and potato stew</span>
+            <span class="ing">rosários de porco · batata · cenoura · cebola · farinha</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/d4.jpg" alt="Sopa de tomate with a cheese toast" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl d">Dinner</span>
+            <span class="dish">Sopa de tomate with a cheese toast</span>
+            <span class="ing">tomate triturado · cebola · batata · natas · pão · queijo</span>
+          </figcaption>
+        </figure></div>
+        <p class="snack"><span class="lbl">Snack</span> Biscuits and banana</p>
+      </details>      <details class="day" id="day5" open>
+        <summary><span class="dnum">Day 5</span><span class="dsum">Tosta de queijo com manteiga, and a coffee · Risotto de legumes com queijo · Creme de legumes with bread</span></summary>
+        <div class="meals">        <figure class="meal">
+          <img src="img/b4.jpg" alt="Tosta de queijo com manteiga, and a coffee" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl b">Breakfast</span>
+            <span class="dish">Tosta de queijo com manteiga, and a coffee</span>
+            <span class="ing">pão de forma · queijo flamengo · manteiga · café</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/l5.jpg" alt="Risotto de legumes com queijo" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl l">Lunch</span>
+            <span class="dish">Risotto de legumes com queijo</span>
+            <span class="ing">arroz risotto · legumes · natas · queijo</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/d5.jpg" alt="Creme de legumes with bread" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl d">Dinner</span>
+            <span class="dish">Creme de legumes with bread</span>
+            <span class="ing">batata · cenoura · cebola · natas · pão</span>
+          </figcaption>
+        </figure></div>
+        <p class="snack"><span class="lbl">Snack</span> Yogurt and apple</p>
+      </details>      <details class="day" id="day6" open>
+        <summary><span class="dnum">Day 6</span><span class="dsum">Tosta mista — cheese and ham toast · Arroz de tomate com chouriço · Esparregado de grelos com chouriço</span></summary>
+        <div class="meals">        <figure class="meal">
+          <img src="img/b1.jpg" alt="Tosta mista — cheese and ham toast" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl b">Breakfast</span>
+            <span class="dish">Tosta mista — cheese and ham toast</span>
+            <span class="ing">pão de forma · queijo flamengo · fiambre · leite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/l6.jpg" alt="Arroz de tomate com chouriço" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl l">Lunch</span>
+            <span class="dish">Arroz de tomate com chouriço</span>
+            <span class="ing">arroz carolino · tomate triturado · chouriço · cebola</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/d6.jpg" alt="Esparregado de grelos com chouriço" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl d">Dinner</span>
+            <span class="dish">Esparregado de grelos com chouriço</span>
+            <span class="ing">grelos · chouriço · cebola · azeite · pão</span>
+          </figcaption>
+        </figure></div>
+        <p class="snack"><span class="lbl">Snack</span> Biscuits and banana</p>
+      </details>      <details class="day" id="day7" open>
+        <summary><span class="dnum">Day 7</span><span class="dsum">Tosta de queijo com tomate · Massa com sardinha · Sopa de legumes with a cheese toast</span></summary>
+        <div class="meals">        <figure class="meal">
+          <img src="img/b2.jpg" alt="Tosta de queijo com tomate" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl b">Breakfast</span>
+            <span class="dish">Tosta de queijo com tomate</span>
+            <span class="ing">pão de forma · queijo flamengo · tomate · leite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/l7.jpg" alt="Massa com sardinha" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl l">Lunch</span>
+            <span class="dish">Massa com sardinha</span>
+            <span class="ing">massa · sardinhas · cebola · azeite</span>
+          </figcaption>
+        </figure>        <figure class="meal">
+          <img src="img/d1.jpg" alt="Sopa de legumes with a cheese toast" width="720" height="540" loading="lazy" decoding="async">
+          <figcaption>
+            <span class="lbl d">Dinner</span>
+            <span class="dish">Sopa de legumes with a cheese toast</span>
+            <span class="ing">batata · cenoura · cebola · azeite · pão · queijo</span>
+          </figcaption>
+        </figure></div>
+        <p class="snack"><span class="lbl">Snack</span> Yogurt and apple</p>
+      </details>
+
+  <h2 id="list-h">Shopping list</h2>
+  <div class="tools">
+    <div class="progress">
+      <div class="track"><i id="bar"></i></div>
+      <span id="bought">0 / 36 bought</span>
+    </div>
+    <button id="copy" type="button">Copy list</button>
+    <button id="reset" type="button">Reset ticks</button>
+  </div>
+  <section id="list" aria-labelledby="list-h">
+        <fieldset class="aisle">
+          <legend>Protein</legend>
+          <label class="row" data-name="Pedaços de frango Auchan (≈1 kg)" data-qty="2">
+            <input type="checkbox" id="i1">
+            <span class="nm">Pedaços de frango Auchan (≈1 kg)</span>
+            <span class="qt">×2</span>
+            <span class="pr">4.48 €</span>
+          </label>          <label class="row" data-name="Rosários de porco Auchan, 670 g" data-qty="1">
+            <input type="checkbox" id="i2">
+            <span class="nm">Rosários de porco Auchan, 670 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">2.67 €</span>
+          </label>          <label class="row" data-name="Atum Polegar em óleo, 110 g" data-qty="4">
+            <input type="checkbox" id="i3">
+            <span class="nm">Atum Polegar em óleo, 110 g</span>
+            <span class="qt">×4</span>
+            <span class="pr">3.16 €</span>
+          </label>          <label class="row" data-name="Sardinhas Pescador em tomate, 54 g" data-qty="2">
+            <input type="checkbox" id="i4">
+            <span class="nm">Sardinhas Pescador em tomate, 54 g</span>
+            <span class="qt">×2</span>
+            <span class="pr">1.72 €</span>
+          </label>          <label class="row" data-name="Salsichas Polegar Frankfurt, 8 un" data-qty="1">
+            <input type="checkbox" id="i5">
+            <span class="nm">Salsichas Polegar Frankfurt, 8 un</span>
+            <span class="qt">×1</span>
+            <span class="pr">0.85 €</span>
+          </label>          <label class="row" data-name="Chouriço corrente Stec, 150 g" data-qty="1">
+            <input type="checkbox" id="i6">
+            <span class="nm">Chouriço corrente Stec, 150 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">1.19 €</span>
+          </label>          <label class="row" data-name="Fiambre da pá Auchan, 120 g" data-qty="2">
+            <input type="checkbox" id="i7">
+            <span class="nm">Fiambre da pá Auchan, 120 g</span>
+            <span class="qt">×2</span>
+            <span class="pr">2.38 €</span>
+          </label>          <label class="row" data-name="Bacalhau com natas ultracongelado, 300 g" data-qty="1">
+            <input type="checkbox" id="i8">
+            <span class="nm">Bacalhau com natas ultracongelado, 300 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">2.69 €</span>
+          </label>          <label class="row" data-name="Feijão frade Polegar, 540 g" data-qty="3">
+            <input type="checkbox" id="i9">
+            <span class="nm">Feijão frade Polegar, 540 g</span>
+            <span class="qt">×3</span>
+            <span class="pr">1.50 €</span>
+          </label>
+        </fieldset>        <fieldset class="aisle">
+          <legend>Carbs</legend>
+          <label class="row" data-name="Arroz carolino Auchan, 1 kg" data-qty="2">
+            <input type="checkbox" id="i10">
+            <span class="nm">Arroz carolino Auchan, 1 kg</span>
+            <span class="qt">×2</span>
+            <span class="pr">2.18 €</span>
+          </label>          <label class="row" data-name="Arroz risotto Auchan, 500 g" data-qty="1">
+            <input type="checkbox" id="i11">
+            <span class="nm">Arroz risotto Auchan, 500 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">0.99 €</span>
+          </label>          <label class="row" data-name="Esparguete Auchan, 500 g" data-qty="2">
+            <input type="checkbox" id="i12">
+            <span class="nm">Esparguete Auchan, 500 g</span>
+            <span class="qt">×2</span>
+            <span class="pr">1.38 €</span>
+          </label>          <label class="row" data-name="Batata branca lavada, 300 g" data-qty="4">
+            <input type="checkbox" id="i13">
+            <span class="nm">Batata branca lavada, 300 g</span>
+            <span class="qt">×4</span>
+            <span class="pr">2.04 €</span>
+          </label>          <label class="row" data-name="Batatas pré-fritas para forno, 1 kg" data-qty="1">
+            <input type="checkbox" id="i14">
+            <span class="nm">Batatas pré-fritas para forno, 1 kg</span>
+            <span class="qt">×1</span>
+            <span class="pr">1.85 €</span>
+          </label>          <label class="row" data-name="Pão de forma integral Auchan, 600 g" data-qty="2">
+            <input type="checkbox" id="i15">
+            <span class="nm">Pão de forma integral Auchan, 600 g</span>
+            <span class="qt">×2</span>
+            <span class="pr">2.30 €</span>
+          </label>          <label class="row" data-name="Pão — carcaça mistura" data-qty="10">
+            <input type="checkbox" id="i16">
+            <span class="nm">Pão — carcaça mistura</span>
+            <span class="qt">×10</span>
+            <span class="pr">2.00 €</span>
+          </label>
+        </fieldset>        <fieldset class="aisle">
+          <legend>Dairy</legend>
+          <label class="row" data-name="Leite Mimosa meio gordo, 1 L" data-qty="3">
+            <input type="checkbox" id="i17">
+            <span class="nm">Leite Mimosa meio gordo, 1 L</span>
+            <span class="qt">×3</span>
+            <span class="pr">3.12 €</span>
+          </label>          <label class="row" data-name="Iogurte Auchan aroma, 4×125 g" data-qty="3">
+            <input type="checkbox" id="i18">
+            <span class="nm">Iogurte Auchan aroma, 4×125 g</span>
+            <span class="qt">×3</span>
+            <span class="pr">2.19 €</span>
+          </label>          <label class="row" data-name="Queijo flamengo ralado, 150 g" data-qty="3">
+            <input type="checkbox" id="i19">
+            <span class="nm">Queijo flamengo ralado, 150 g</span>
+            <span class="qt">×3</span>
+            <span class="pr">3.27 €</span>
+          </label>          <label class="row" data-name="Manteiga Mimosa com sal, 125 g" data-qty="1">
+            <input type="checkbox" id="i20">
+            <span class="nm">Manteiga Mimosa com sal, 125 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">1.39 €</span>
+          </label>
+        </fieldset>        <fieldset class="aisle">
+          <legend>Sauces and pantry</legend>
+          <label class="row" data-name="Natas culinárias Auchan, 200 ml" data-qty="3">
+            <input type="checkbox" id="i21">
+            <span class="nm">Natas culinárias Auchan, 200 ml</span>
+            <span class="qt">×3</span>
+            <span class="pr">2.37 €</span>
+          </label>          <label class="row" data-name="Farinha de trigo Polegar, 1 kg" data-qty="1">
+            <input type="checkbox" id="i22">
+            <span class="nm">Farinha de trigo Polegar, 1 kg</span>
+            <span class="qt">×1</span>
+            <span class="pr">0.60 €</span>
+          </label>          <label class="row" data-name="Azeite virgem extra, 250 ml" data-qty="1">
+            <input type="checkbox" id="i23">
+            <span class="nm">Azeite virgem extra, 250 ml</span>
+            <span class="qt">×1</span>
+            <span class="pr">2.59 €</span>
+          </label>          <label class="row" data-name="Cebola, 250 g" data-qty="3">
+            <input type="checkbox" id="i24">
+            <span class="nm">Cebola, 250 g</span>
+            <span class="qt">×3</span>
+            <span class="pr">1.26 €</span>
+          </label>          <label class="row" data-name="Alho granulado Auchan, 50 g" data-qty="1">
+            <input type="checkbox" id="i25">
+            <span class="nm">Alho granulado Auchan, 50 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">0.69 €</span>
+          </label>          <label class="row" data-name="Cenoura, 100 g" data-qty="6">
+            <input type="checkbox" id="i26">
+            <span class="nm">Cenoura, 100 g</span>
+            <span class="qt">×6</span>
+            <span class="pr">0.72 €</span>
+          </label>          <label class="row" data-name="Tomate triturado Auchan, 400 g" data-qty="2">
+            <input type="checkbox" id="i27">
+            <span class="nm">Tomate triturado Auchan, 400 g</span>
+            <span class="qt">×2</span>
+            <span class="pr">1.38 €</span>
+          </label>          <label class="row" data-name="Tomate chucha local, 300 g" data-qty="2">
+            <input type="checkbox" id="i28">
+            <span class="nm">Tomate chucha local, 300 g</span>
+            <span class="qt">×2</span>
+            <span class="pr">1.02 €</span>
+          </label>          <label class="row" data-name="Sal Auchan de mesa, 250 g" data-qty="1">
+            <input type="checkbox" id="i29">
+            <span class="nm">Sal Auchan de mesa, 250 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">0.29 €</span>
+          </label>          <label class="row" data-name="Marmelada Auchan Extra, 450 g" data-qty="1">
+            <input type="checkbox" id="i30">
+            <span class="nm">Marmelada Auchan Extra, 450 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">1.39 €</span>
+          </label>          <label class="row" data-name="Coentros moídos Auchan, 40 g" data-qty="1">
+            <input type="checkbox" id="i31">
+            <span class="nm">Coentros moídos Auchan, 40 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">0.85 €</span>
+          </label>          <label class="row" data-name="Café solúvel Nescafé, 10×2 g" data-qty="1">
+            <input type="checkbox" id="i32">
+            <span class="nm">Café solúvel Nescafé, 10×2 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">1.55 €</span>
+          </label>          <label class="row" data-name="Esparregado de grelos ultracongelado, 350 g" data-qty="1">
+            <input type="checkbox" id="i33">
+            <span class="nm">Esparregado de grelos ultracongelado, 350 g</span>
+            <span class="qt">×1</span>
+            <span class="pr">2.59 €</span>
+          </label>
+        </fieldset>        <fieldset class="aisle">
+          <legend>Fruit and snacks</legend>
+          <label class="row" data-name="Banana Del Monte, 200 g" data-qty="10">
+            <input type="checkbox" id="i34">
+            <span class="nm">Banana Del Monte, 200 g</span>
+            <span class="qt">×10</span>
+            <span class="pr">2.40 €</span>
+          </label>          <label class="row" data-name="Maçã Golden, 200 g" data-qty="5">
+            <input type="checkbox" id="i35">
+            <span class="nm">Maçã Golden, 200 g</span>
+            <span class="qt">×5</span>
+            <span class="pr">1.80 €</span>
+          </label>          <label class="row" data-name="Bolacha Nacional Maria, 200 g" data-qty="2">
+            <input type="checkbox" id="i36">
+            <span class="nm">Bolacha Nacional Maria, 200 g</span>
+            <span class="qt">×2</span>
+            <span class="pr">1.48 €</span>
+          </label>
+        </fieldset>
+  </section>
 
   <h2>Sauces</h2>
-  <div class="sauces">
-    <div class="sauce">
-      <h4>Gravy (molho de carne)</h4>
-      <p>There is no ready-made gravy in this catalogue — in Portugal it is made at home. Pour the juices from the pork or chicken pan into a small pan, stir in a spoon of farinha (flour) and a splash of water, season with salt and simmer until it thickens.</p>
-      <span class="tagline">farinha de trigo · pan juices · sal</span>
-    </div>
-    <div class="sauce">
-      <h4>Cream sauce (natas)</h4>
-      <p>Nata culinária warmed with a little onion and seasoning — the base for the stroganoff noodles and for finishing the risotto.</p>
-      <span class="tagline">natas culinárias · cebola</span>
-    </div>
-    <div class="sauce">
-      <h4>Béchamel</h4>
-      <p>Made at home instead of bought: whisk farinha into warm leite with a knob of manteiga and a pinch of salt. Goes over the mash and loosens the risotto.</p>
-      <span class="tagline">farinha · leite · manteiga</span>
-    </div>
-    <div class="sauce">
-      <h4>Cheese for the toasts</h4>
-      <p>Queijo flamengo melted on pão de forma is the whole breakfast. The same cheese goes on the soup toast and into the risotto.</p>
-      <span class="tagline">queijo flamengo · pão de forma</span>
-    </div>
-    <div class="sauce">
-      <h4>Tomato sauce</h4>
-      <p>Homemade from tomate triturado, onion and azeite, simmered down. Used for the tomato soup and the one-pot rice — kept away from the tuna, which is dressed with oil and onion instead.</p>
-      <span class="tagline">tomate triturado · cebola · azeite</span>
-    </div>
+  <div class="notes">
+    <ul>
+      <li><strong>Gravy (molho de carne)</strong> — not sold ready-made in Portugal. Pour the juices from the pork pan into a small pan, stir in a spoon of <em>farinha</em> and a splash of water, season, and simmer until it thickens. Used on the day 4 stew.</li>
+      <li><strong>Cream sauce (natas)</strong> — <em>nata culinária</em> warmed with onion; finishes the risotto, the creme de legumes and the bacalhau com natas.</li>
+      <li><strong>Béchamel</strong> — made at home: <em>farinha</em> whisked into warm <em>leite</em> with <em>manteiga</em>. Goes over the mash-style soups.</li>
+      <li><strong>Cheese for the toasts</strong> — <em>queijo flamengo</em> melted on <em>pão de forma</em>: all seven breakfasts, plus the toast with the soup.</li>
+      <li><strong>Tomato sauce</strong> — homemade from <em>tomate triturado</em>, onion and <em>azeite</em>. For the tomato soup and the tomato rice; never with the tuna.</li>
+    </ul>
   </div>
-
-  <h2>Shopping list</h2>
-  <table>
-    <thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Total €</th></tr></thead>
-    <tbody>
-<tr class='cat'><td colspan='3'>Protein</td></tr><tr><td>Pedaços de frango Auchan (≈1 kg)</td><td class='num'>1</td><td class='num'>2.24</td></tr><tr><td>Rosários de porco Auchan, 670 g</td><td class='num'>1</td><td class='num'>2.67</td></tr><tr><td>Atum Polegar em óleo, 110 g</td><td class='num'>2</td><td class='num'>1.58</td></tr><tr><td>Salsichas Polegar Frankfurt, 8 un</td><td class='num'>1</td><td class='num'>0.85</td></tr><tr><td>Fiambre da pá Auchan, 120 g</td><td class='num'>1</td><td class='num'>1.19</td></tr><tr class='cat'><td colspan='3'>Carbs</td></tr><tr><td>Arroz carolino Auchan, 1 kg</td><td class='num'>1</td><td class='num'>1.09</td></tr><tr><td>Arroz risotto Auchan, 500 g</td><td class='num'>1</td><td class='num'>0.99</td></tr><tr><td>Esparguete Auchan, 500 g</td><td class='num'>1</td><td class='num'>0.69</td></tr><tr><td>Massa noodles Auchan, 500 g</td><td class='num'>1</td><td class='num'>0.99</td></tr><tr><td>Batata branca lavada, 300 g</td><td class='num'>3</td><td class='num'>1.53</td></tr><tr><td>Batatas pré-fritas para forno, 1 kg</td><td class='num'>1</td><td class='num'>1.85</td></tr><tr><td>Pão de forma integral Auchan, 600 g</td><td class='num'>1</td><td class='num'>1.15</td></tr><tr><td>Pão — carcaça mistura</td><td class='num'>4</td><td class='num'>0.80</td></tr><tr class='cat'><td colspan='3'>Dairy</td></tr><tr><td>Leite Mimosa meio gordo, 1 L</td><td class='num'>2</td><td class='num'>2.08</td></tr><tr><td>Iogurte Auchan aroma, 4×125 g</td><td class='num'>1</td><td class='num'>0.73</td></tr><tr><td>Queijo flamengo ralado, 150 g</td><td class='num'>2</td><td class='num'>2.18</td></tr><tr><td>Manteiga Mimosa com sal, 125 g</td><td class='num'>1</td><td class='num'>1.39</td></tr><tr class='cat'><td colspan='3'>Sauces and pantry</td></tr><tr><td>Natas culinárias Auchan, 200 ml</td><td class='num'>2</td><td class='num'>1.58</td></tr><tr><td>Farinha de trigo Polegar, 1 kg</td><td class='num'>1</td><td class='num'>0.60</td></tr><tr><td>Azeite virgem extra, 250 ml</td><td class='num'>1</td><td class='num'>2.59</td></tr><tr><td>Cebola, 250 g</td><td class='num'>2</td><td class='num'>0.84</td></tr><tr><td>Alho granulado Auchan, 50 g</td><td class='num'>1</td><td class='num'>0.69</td></tr><tr><td>Cenoura, 100 g</td><td class='num'>5</td><td class='num'>0.60</td></tr><tr><td>Tomate triturado Auchan, 400 g</td><td class='num'>2</td><td class='num'>1.38</td></tr><tr><td>Sal Auchan de mesa, 250 g</td><td class='num'>1</td><td class='num'>0.29</td></tr><tr><td>Marmelada Auchan Extra, 450 g</td><td class='num'>1</td><td class='num'>1.39</td></tr><tr class='cat'><td colspan='3'>Fruit and snacks</td></tr><tr><td>Banana Del Monte, 200 g</td><td class='num'>6</td><td class='num'>1.44</td></tr><tr><td>Maçã Golden, 200 g</td><td class='num'>3</td><td class='num'>1.08</td></tr><tr><td>Bolacha Nacional Maria, 200 g</td><td class='num'>1</td><td class='num'>0.74</td></tr>
-    </tbody>
-    <tfoot>
-      <tr><td colspan="2">Food subtotal</td><td class="num">€37.22</td></tr>
-      <tr><td colspan="2">Delivery</td><td class="num">€1.49</td></tr>
-      <tr class="grand"><td colspan="2">Order total</td><td class="num">€38.71</td></tr>
-    </tfoot>
-  </table>
 
   <h2>Cooked once, used across the week</h2>
   <div class="notes">
     <ul>
-      <li><strong>Rice</strong> — the carolino cooked on day 1 doubles as a side; the risotto rice is cooked fresh on day 3.</li>
-      <li><strong>Chicken</strong> — one pan for day 1's one-pot rice, the rest shredded into day 4's stroganoff noodles.</li>
-      <li><strong>Potatoes</strong> — one pot of boiled potatoes feeds day 2's stew and day 3's mash; the oven fries are a separate bag.</li>
-      <li><strong>Cheese and bread</strong> — the pão de forma and queijo flamengo carry all four breakfasts plus the soup toast.</li>
-      <li><strong>Gravy</strong> — made once from the pork pan and poured over the day 3 mash and the day 2 stew.</li>
+      <li><strong>Soup pot</strong> — one big pot of <em>sopa de legumes</em> on day 1 covers day 1 and day 7; the bean and tomato soups are quick single batches.</li>
+      <li><strong>Rice</strong> — <em>arroz carolino</em> cooked once covers the day 1 chicken rice and the day 6 tomato rice; the risotto rice is cooked fresh.</li>
+      <li><strong>Chicken</strong> — the 2 kg roasted on day 1: half into the rice, half kept for the week's salads and snacks.</li>
+      <li><strong>Cheese and bread</strong> — <em>pão de forma</em> and <em>queijo flamengo</em> carry all seven breakfasts and the soup toasts.</li>
+      <li><strong>Tomato base</strong> — one batch of <em>tomate triturado</em> with onion and <em>azeite</em> serves the soup and the tomato rice.</li>
     </ul>
   </div>
 
@@ -230,12 +558,54 @@
     <ul>
       <li>Prices are live from the Glovo Auchan catalogue and can change; refresh before ordering.</li>
       <li>Fresh produce and meat are sold by weight, so the final bill may differ by a few cents.</li>
-      <li>The catalogue has no plain milk, so lactose-free milk is used, and the azeite is a 250 ml bottle.</li>
-      <li>With Prime delivery the order is €37.22, leaving €1.78.</li>
+      <li>The catalogue has no plain milk, so lactose-free milk is used. A <em>pastel de nata</em> pack (360 g) is available for €4.69 if you want a treat.</li>
+      <li>Your ticks are saved in this browser; the shopping list prints as empty boxes, and the whole week prints without the photos.</li>
     </ul>
   </div>
 
-  <footer>Auchan, Castelo Branco via Glovo · 28 items · 12 meals and snacks. Dish photographs are illustrations of the meals, not the packaged products.</footer>
-</div>
+  <footer>Auchan, Castelo Branco via Glovo · 36 items · 21 meals and snacks. Dish photographs are illustrations of the meals, not the packaged products.</footer>
+</main>
+<script>
+(function(){
+  var boxes = Array.prototype.slice.call(document.querySelectorAll('#list input[type=checkbox]'));
+  var counter = document.getElementById('bought');
+  var bar = document.getElementById('bar');
+  var total = boxes.length, KEY = 'comida-week-v1';
+  function load(){ try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch(e){ return []; } }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(boxes.map(function(b){return b.checked?1:0;}))); } catch(e){} }
+  function update(){
+    var n = boxes.filter(function(b){ return b.checked; }).length;
+    if (counter) counter.textContent = n + ' / ' + total + ' bought';
+    if (bar) bar.style.width = (total ? (n/total*100) : 0) + '%';
+  }
+  var saved = load();
+  boxes.forEach(function(b,i){ if (saved[i]) b.checked = true; b.addEventListener('change', function(){ save(); update(); }); });
+  update();
+  var reset = document.getElementById('reset');
+  if (reset) reset.addEventListener('click', function(){ boxes.forEach(function(b){ b.checked=false; }); save(); update(); });
+  var copy = document.getElementById('copy');
+  if (copy) copy.addEventListener('click', function(){
+    var lines = boxes.map(function(b){
+      var row = b.closest('label');
+      return (b.checked ? '[x] ' : '[ ] ') + row.getAttribute('data-name') + '  x' + row.getAttribute('data-qty');
+    });
+    var text = 'Shopping list — Auchan, Castelo Branco\n\n' + lines.join('\n');
+    function ok(){ copy.textContent = 'Copied'; setTimeout(function(){ copy.textContent = 'Copy list'; }, 1600); }
+    function no(){ copy.textContent = 'Copy failed'; setTimeout(function(){ copy.textContent = 'Copy list'; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, no);
+    else no();
+  });
+  var links = Array.prototype.slice.call(document.querySelectorAll('.daynav a'));
+  if ('IntersectionObserver' in window) {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    links.forEach(function(a){ var s = document.querySelector(a.getAttribute('href')); if (s) obs.observe(s); });
+  }
+  window.addEventListener('beforeprint', function(){ document.querySelectorAll('details.day').forEach(function(d){ d.open = true; }); });
+})();
+</script>
 </body>
 </html>
